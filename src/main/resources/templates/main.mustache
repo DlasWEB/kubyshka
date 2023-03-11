@@ -5,6 +5,36 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<div>{{some}}!</div>
+
+ <div>
+    <form method="post">
+        <input type="text" name="saving_name" placeholder="Введите наименование накопления" />
+        <input type="text" name="amount" placeholder="Введите сумму накопления">
+        <input type="text" name="currency_name" placeholder="Введите валюту накопления">
+        <input type="text" name="saving_type" placeholder="Введите тип накопления">
+        <button type="submit">Добавить</button>
+    </form>
+ </div>
+
+<div>Таблица сбережений</div>
+    <div>
+     <table>
+       <tr>
+         <th>Наименование</th>
+         <th>Сумма</th>
+         <th>Валюта</th>
+         <th>Тип</th>
+       </tr>
+       {{#savings}}
+       <tr>
+         <td>{{saving_name}}</td>
+         <td>{{amount}}</td>
+         <td>{{currency_name}}</td>
+         <td>{{saving_type}}</td>
+       </tr>
+       {{/savings}}
+     </table>
+    </div>
+
 </body>
 </html>
