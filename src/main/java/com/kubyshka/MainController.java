@@ -15,14 +15,19 @@ public class MainController {
     @Autowired
     private SavingRepository savingRepository;
 
-    @GetMapping
+    @GetMapping("/main")
     public String main(Map<String, Object> model) {
         Iterable<Saving> savings = savingRepository.findAll();
         model.put("savings", savings);
         return "main";
     }
 
-    @PostMapping
+    @GetMapping("/addsavings")
+    public String addSavingPage(Map<String, Object> model) {
+        return "addsavings";
+    }
+
+    @PostMapping("/addsavings")
     public String addSaving(@RequestParam String saving_name,
                             @RequestParam Float amount,
                             @RequestParam String currency_name,
@@ -33,6 +38,6 @@ public class MainController {
         Iterable<Saving> savings = savingRepository.findAll();
         model.put("savings", savings);
 
-        return "main";
+        return "redirect:/main";
     }
 }
