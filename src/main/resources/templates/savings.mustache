@@ -5,6 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Выйти"/>
+    </form>
+</div>
+<br><br>
 <div><a href="/addsavings">На страницу добавления сбережений</a></div>
 <h1>Таблица сбережений</h1>
     <div>

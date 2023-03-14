@@ -5,6 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Выйти"/>
+    </form>
+</div>
+<br><br>
 <h1>Страница добавления сбережений в БД</h1>
  <div>
     <form method="post">
@@ -16,6 +23,7 @@
         <br><br>
         <input type="text" name="saving_type" placeholder="Введите тип накопления">
         <br><br>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
         <button type="submit">Добавить</button>
     </form>
  </div>

@@ -1,4 +1,4 @@
-package com.kubyshka;
+package com.kubyshka.controller;
 
 import com.kubyshka.entity.Saving;
 import com.kubyshka.repositories.SavingRepository;
@@ -15,11 +15,16 @@ public class MainController {
     @Autowired
     private SavingRepository savingRepository;
 
-    @GetMapping("/main")
-    public String main(Map<String, Object> model) {
+    @GetMapping("/")
+    public String home(Map<String, Object> model) {
+        return "home";
+    }
+
+    @GetMapping("/savings")
+    public String savingPage(Map<String, Object> model) {
         Iterable<Saving> savings = savingRepository.findAll();
         model.put("savings", savings);
-        return "main";
+        return "savings";
     }
 
     @GetMapping("/addsavings")
@@ -38,6 +43,6 @@ public class MainController {
         Iterable<Saving> savings = savingRepository.findAll();
         model.put("savings", savings);
 
-        return "redirect:/main";
+        return "redirect:/savings";
     }
 }
