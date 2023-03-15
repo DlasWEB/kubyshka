@@ -1,9 +1,6 @@
 package com.kubyshka.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Saving {
@@ -19,14 +16,23 @@ public class Saving {
 
     private String saving_type;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
+    
     public Saving() {
     }
 
-    public Saving(String saving_name, Float amount, String currency_name, String saving_type) {
+    public Saving(String saving_name, Float amount, String currency_name, String saving_type, User user) {
+        this.author = user;
         this.saving_name = saving_name;
         this.amount = amount;
         this.currency_name = currency_name;
         this.saving_type = saving_type;
+    }
+
+    public String getAuthorName() {
+        return author != null ? author.getUsername() : "<ничьё>";
     }
 
     public Integer getId() {
@@ -67,5 +73,13 @@ public class Saving {
 
     public void setSaving_type(String saving_type) {
         this.saving_type = saving_type;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }
