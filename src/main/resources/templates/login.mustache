@@ -1,20 +1,65 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Spring Security Example </title>
+    <title>Регистрация пользователя</title>
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content="CodedThemes" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css" />
+    <!-- animation css -->
+    <link rel="stylesheet" type="text/css" href="css/animate.min.css" />
+    <!-- vendor css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-<h1>Страница авторизации</h1>
-<br>
-<form action="/login" method="post">
-    <div><label> Имя : <input type="text" name="username"/> </label></div>
-    <br><br>
-    <div><label> Пароль: <input type="password" name="password"/> </label></div>
-    <br><br>
-    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-    <div><input type="submit" value="Погнали!"/></div>
-    <br><br>
-    <a href="/registration">Регистрация пользователя</a>
-</form>
+    <div class="auth-wrapper">
+        <div class="auth-content">
+            <div class="auth-bg">
+                <span class="r"></span>
+                <span class="r s"></span>
+                <span class="r s"></span>
+                <span class="r"></span>
+            </div>
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        <i class="feather icon-unlock auth-icon"></i>
+                    </div>
+                    <h3 class="mb-4">Авторизация пользователя</h3>
+                    <form action="/login" method="post">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="username" placeholder="Имя пользователя">
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="password" class="form-control" name="password" placeholder="Пароль">
+                        </div>
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <button class="btn btn-primary shadow-2 mb-4">Погнали!</button>
+                    </form>
+                    <p class="mb-0 text-muted">Еще не с нами? <a href="/registration">Регайся</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Required Js -->
+    <script src="js/vendor-all.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/pcoded.min.js"></script>
+
 </body>
 </html>
