@@ -6,11 +6,11 @@ import com.kubyshka.repositories.SavingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -23,10 +23,26 @@ public class MainController {
     }
 
     @GetMapping("/savings")
-    public String savingPage(Map<String, Object> model) {
+    public String savingPage(
+            @AuthenticationPrincipal User user,
+            Model model) {
+        Set<Saving> savings = user.getSavings();
+        model.addAttribute("savings", savings);
+        return "savings";
+    }
+
+    @GetMapping("/editsavings")
+    public String editSavingPage(Map<String, Object> model) {
         Iterable<Saving> savings = savingRepository.findAll();
         model.put("savings", savings);
-        return "savings";
+        return "editsavings";
+    }
+
+    @RequestMapping("/updatesavings")
+    public String updateSaving(Map<String, Object> model) {
+        Iterable<Saving> savings = savingRepository.findAll();
+        model.put("savings", savings);
+        return "editsavings";
     }
 
     @GetMapping("/addsavings")
@@ -44,9 +60,6 @@ public class MainController {
             Map<String, Object> model) {
         Saving saving = new Saving(saving_name, amount, currency_name, saving_type, user);
         savingRepository.save(saving);
-        Iterable<Saving> savings = savingRepository.findAll();
-        model.put("savings", savings);
-
         return "redirect:/savings";
     }
 }

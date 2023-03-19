@@ -22,6 +22,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Saving> savings;
+
     public Long getId() {
         return id;
     }
@@ -87,4 +90,11 @@ public class User implements UserDetails {
         return getRoles();
     }
 
+    public Set<Saving> getSavings() {
+        return savings;
+    }
+
+    public void setSavings(Set<Saving> savings) {
+        this.savings = savings;
+    }
 }

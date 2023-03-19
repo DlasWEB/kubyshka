@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Выйти"/>
+    </form>
+</div>
+<br><br>
+<div><a href="/savings">Сбережения</a></div>
+<br><br>
+<h1>Страница изменения сбережений в БД</h1>
+<br><br>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Наименование</th>
+            <th>Сумма</th>
+            <th>Валюта</th>
+            <th>Тип</th>
+            <th>Автор</th>
+            <th>Изменение строки</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#savings}}
+            <tr>
+                <td>{{saving_name}}</td>
+                <td>{{amount}}</td>
+                <td>{{currency_name}}</td>
+                <td>{{saving_type}}</td>
+                <td>{{authorName}}</td>
+            </tr>
+        {{/savings}}
+        </tbody>
+    </table>
+</div>
+<br><br>
+<!--<div>-->
+<!--    <form method="post">-->
+<!--        <input type="text" name="saving_name" placeholder="Введите наименование накопления" />-->
+<!--        <br><br>-->
+<!--        <input type="text" name="amount" placeholder="Введите сумму накопления">-->
+<!--        <br><br>-->
+<!--        <input type="text" name="currency_name" placeholder="Введите валюту накопления">-->
+<!--        <br><br>-->
+<!--        <input type="text" name="saving_type" placeholder="Введите тип накопления">-->
+<!--        <br><br>-->
+<!--        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />-->
+<!--        <button type="submit">Добавить</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+</body>
+</html>
