@@ -1,36 +1,47 @@
 package com.kubyshka.controller;
 
-import com.kubyshka.entity.Role;
 import com.kubyshka.entity.User;
-import com.kubyshka.repositories.UserRepository;
+import com.kubyshka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Collections;
+import javax.validation.Valid;
 import java.util.Map;
-
 
 @Controller
 public class RegistrationController {
+
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
+
     @GetMapping("/registration")
-    public String registration() {
+    public String registration(Model model) {
+        model.addAttribute("userForm", new User());
         return "registration";
     }
+
     @PostMapping("/registration")
-    public String addUser(User user, Map<String, Object> model) {
-        User userFromDB = userRepository.findByUsername(user.getUsername());
-        if (userFromDB != null) {
-            model.put("message", "Такой пользователь уже зарегистрирован!");
+    public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errors = ControllerUtils.getErrors(bindingResult);
+            model.mergeAttributes(errors);
             return "registration";
         }
-        user.setActive(true);
-        user.setRoles(Collections.singleton(Role.USER));
-        userRepository.save(user);
-        
-        return "redirect:/login";
+        if (!userForm.getPassword().equals(userForm.getPasswordConfirm())){
+            model.addAttribute("passwordError", "Пароли не совпадают");
+            return "registration";
+        }
+        if (!userService.saveUser(userForm)){
+            model.addAttribute("usernameError", "Такой пользователь уже существует");
+            return "registration";
+        }
+
+        return "redirect:/";
     }
 }
