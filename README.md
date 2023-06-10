@@ -1,12 +1,18 @@
 ## Kubyshka (Кубышка)
 
 <p align="center">
-      <img src="https://github.com/DlasWEB/kubyshka/blob/master/src/main/resources/static/img/05.png" alt="Project Logo">
+      <img src="https://github.com/DlasWEB/kubyshka/blob/master/src/main/resources/static/img/05.png" alt="Лого проекта">
 </p>
 
 ## Описание
 
 Kubyshka это веб приложения для учета ваших накоплений. Принцип его работы заключается в предоставлении срезов по сбережениям, которые вы занесли в бд под своим пользователем.
+
+## Схема
+
+<p align="center">
+      <img src="https://github.com/DlasWEB/kubyshka/blob/master/img_for_readme/schem.png" alt="Схема приложения">
+</p>
 
 ## Установка
 
