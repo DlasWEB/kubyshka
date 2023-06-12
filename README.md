@@ -39,7 +39,7 @@ Kubyshka это веб приложения для учета ваших нак�
 4. Поднимаем контейнеры с:
     - mysql 
         ```shell script
-        $ docker run --restart=unless-stopped -dit --net kubyshka-net -p 3307:3306 --name mysqldb_kubyshka -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=kubyshka_db mysql
+        $ sudo docker run --restart=unless-stopped -dit --net kubyshka-net -p 3307:3306 --name mysqldb_kubyshka -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=kubyshka_db -v kubyshka_storage:/var/lib/mysql mysql
         ```
     - kubyshka 
         ```shell script
